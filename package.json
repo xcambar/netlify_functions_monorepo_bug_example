@@ -1,0 +1,27 @@
+{
+  "name": "netlify_monorepo_example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "netlify functions:serve --filter @test/my-netlify-functions",
+    "test": "concurrently --names NETLIFY,TEST_RUNNER -c green,blue 'npm start' 'wait-on http://localhost:9999/.netlify/functions/hello && tsx index.test.ts' --kill-others --success first"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.1",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "./packages/*"
+  ],
+  "dependencies": {
+    "netlify-cli": "^23.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.0",
+    "concurrently": "^9.2.1",
+    "tsx": "^4.20.5",
+    "wait-on": "^8.0.5"
+  }
+}
