@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "netlify functions:serve --filter @test/my-netlify-functions",
-    "test": "concurrently --names NETLIFY,TEST_RUNNER -c green,blue 'npm start' 'wait-on http://localhost:9999/.netlify/functions/hello && tsx index.test.ts' --kill-others --success first"
+    "test": "tsx index.plain.test.ts && npm run test:http",
+    "test:http": "concurrently --names NETLIFY,TEST_RUNNER -c green,blue 'npm start' 'wait-on http://localhost:9999/.netlify/functions/hello && tsx index.test.ts' --kill-others --success first"
   },
   "keywords": [],
   "author": "",
